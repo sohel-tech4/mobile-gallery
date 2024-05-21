@@ -10,6 +10,8 @@ app.use("/", MobileRouter);
 app.use("/api/products/:productId", MobileRouter);
 app.use("/api/products/:productId", MobileRouter);
 
+app.use("/api/orders", MobileRouter);
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello Mobile!");
 });

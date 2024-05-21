@@ -1,5 +1,7 @@
 import { TMobile } from "./mobile.interface";
 import { Mobile } from "./mobile.model";
+import { TOrder } from "./order.interface";
+import { Orders } from "./order.model";
 
 const CreateMobile = async (mobile: TMobile) => {
   const result = await Mobile.create(mobile);
@@ -39,10 +41,30 @@ const deleteMobile = async (id: string) => {
   return result;
 };
 
+const CreateOrder = async (NewOrders: TOrder) => {
+  const result = await Orders.create(NewOrders);
+  return result;
+};
+
+const getAllOrders = async (email?: string) => {
+  try {
+    let query: any = {};
+    if (email) {
+      query = { email: email };
+    }
+    const allOrders = await Orders.find(query);
+    return allOrders;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const MobileServices = {
   CreateMobile,
   getAllMobile,
   getSingleMobile,
   updateMobileData,
   deleteMobile,
+  CreateOrder,
+  getAllOrders,
 };
