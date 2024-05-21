@@ -6,9 +6,17 @@ const CreateMobile = async (mobile: TMobile) => {
   return result;
 };
 
-const getAllMobile = async () => {
-  const result = await Mobile.find();
-  return result;
+const getAllMobile = async (searchTerm?: string) => {
+  try {
+    let query = {};
+    if (searchTerm) {
+      query = { name: { $regex: searchTerm, $options: "i" } };
+    }
+    const mobiles = await Mobile.find(query);
+    return mobiles;
+  } catch (error) {
+    return error;
+  }
 };
 
 const getSingleMobile = async (id: string) => {

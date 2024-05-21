@@ -13,17 +13,31 @@ const CreateMobile = async (req: Request, res: Response) => {
 
 const getAllMobile = async (req: Request, res: Response) => {
   try {
-    const result = await MobileServices.getAllMobile();
-    res.status(200).json({
-      success: true,
-      message: "Products fetched successfully!",
-      data: result,
-    });
+    const { searchTerm } = req.query;
+    const result: any = await MobileServices.getAllMobile(searchTerm as string);
+    if (!searchTerm) {
+      res.status(200).json({
+        success: true,
+        message: "Products fetched successfully!",
+        data: result,
+      });
+    } else if (result.length === 0) {
+      res.status(404).json({
+        success: false,
+        message: `No products found matching search term '${searchTerm}'`,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: `Products matching search term '${searchTerm}' fetched successfully!`,
+        data: result,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Could not fetched successfully!",
-      error,
+      message: "Products could not be fetched successfully!",
+      error: error,
     });
   }
 };
