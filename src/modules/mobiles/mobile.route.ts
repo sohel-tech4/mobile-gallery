@@ -3,12 +3,12 @@ import { Mobile } from "./mobile.models";
 
 const router = express.Router();
 
-router.post("/", (req: Request, res: Response) => {
-  const Result = Mobile.create(req.body);
+router.post("/", async (req: Request, res: Response) => {
+  const result = await Mobile.create(req.body);
   res.json({
     success: true,
     message: "Product Created Successfully",
-    data: Result,
+    data: result,
   });
 });
 

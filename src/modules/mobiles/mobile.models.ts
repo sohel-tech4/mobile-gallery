@@ -45,7 +45,7 @@ const mobileSchema = new Schema({
     required: true,
   },
   variants: {
-    types: [variantsSchema],
+    type: [variantsSchema],
     required: true,
   },
   inventory: {
