@@ -11,7 +11,13 @@ const getAllMobile = async () => {
   return result;
 };
 
+const getSingleMobile = async (id: string) => {
+  const result = await Mobile.findOne({ id });
+  return result;
+};
+
 export const MobileServices = {
   CreateMobile,
   getAllMobile,
+  getSingleMobile,
 };

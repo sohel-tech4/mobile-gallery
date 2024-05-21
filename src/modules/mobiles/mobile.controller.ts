@@ -13,8 +13,7 @@ const CreateMobile = async (req: Request, res: Response) => {
 
 const getAllMobile = async (req: Request, res: Response) => {
   try {
-    const mobileData = req.body;
-    const result = await MobileServices.getAllMobile(mobileData);
+    const result = await MobileServices.getAllMobile();
     res.status(200).json({
       success: true,
       message: "Products fetched successfully!",
@@ -29,7 +28,26 @@ const getAllMobile = async (req: Request, res: Response) => {
   }
 };
 
+const getSingleMobile = async (req: Request, res: Response) => {
+  try {
+    const { singleMobile } = req.params;
+    const result = await MobileServices.getSingleMobile(singleMobile);
+    res.status(200).json({
+      success: true,
+      message: "Product fetched successfully!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Product Could not fetched successfully!",
+      error,
+    });
+  }
+};
+
 export const mobileController = {
   CreateMobile,
   getAllMobile,
+  getSingleMobile,
 };
