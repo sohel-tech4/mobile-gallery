@@ -400,6 +400,7 @@ Its one of the backend server for Mobile Gallery. Here I have used some technolo
 ### **Sample Error Responses**
 
 - Insufficient Quantity Error
+- When you want to order some product It will show have any Sufficent Quantity products if not it will show this error.
 
 ```jsx
 {
@@ -409,6 +410,7 @@ Its one of the backend server for Mobile Gallery. Here I have used some technolo
 ```
 
 - Not Found Error
+- Some data which is not here it will show Order not found
 
 ```jsx
 {
@@ -418,6 +420,7 @@ Its one of the backend server for Mobile Gallery. Here I have used some technolo
 ```
 
 - Not Found Route
+- If you enter false route to search somthing It will show Route not found
 
 ```jsx
 {
