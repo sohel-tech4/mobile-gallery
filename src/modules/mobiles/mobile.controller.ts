@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { MobileServices } from "./mobile.service";
-import zodMobileSchema from "./validation.zod";
+import zodMobileSchema from "./mobile.validation.z";
+import orderZodSchema from "./order.validation.z";
 
 const CreateMobile = async (req: Request, res: Response) => {
   try {
@@ -111,13 +112,22 @@ const deleteMobile = async (req: Request, res: Response) => {
 };
 
 const CreateOrder = async (req: Request, res: Response) => {
+  try {
   const OrderData = req.body;
-  const result = await MobileServices.CreateOrder(OrderData);
+  const zodValidationOrder = orderZodSchema.parse(OrderData)
+  const result = await MobileServices.CreateOrder(zodValidationOrder);
   res.json({
     success: true,
     message: "Order created successfully!",
     data: result,
   });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "Order not created successfully!",
+      error
+    });
+  }
 };
 
 const getAllOrders = async (req: Request, res: Response) => {

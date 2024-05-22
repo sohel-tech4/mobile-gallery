@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 
 const variantsZodSchema = z.object({
   type: z.string().nonempty("Type is required and cannot be empty"),

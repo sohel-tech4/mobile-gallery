@@ -41,7 +41,7 @@ const mobileSchema = new Schema({
     required: true,
   },
   tags: {
-    type: [String],
+    type: ["smartphone", "Apple", "iOS"],
     required: true,
   },
   variants: {
