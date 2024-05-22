@@ -18,7 +18,7 @@ app.use("/api/orders", mobile_route_1.MobileRouter);
 app.use((req, res) => {
     res.status(404).json({
         success: false,
-        message: "Router Not Found",
+        message: "Route Not Found",
     });
 });
 exports.default = app;

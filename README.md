@@ -1,16 +1,16 @@
 <h1>Mobile Gallery</h1>
 Its one of the backend server for Mobile Gallery. Here I have used some technology.
 
-<h3>Technology</h3>
-Express, Mongose, MongoDB, TypeScript, Validation for Zod,
+<h3>Technologis</h3>
+- Express, Mongose, MongoDB, TypeScript, Validation for Zod, ESLINT uses for error handling,
 
 <h3>Live Link</h3>
-https://mobile-gallery-inky.vercel.app
+- https://mobile-gallery-inky.vercel.app
 
 <h3>Github Link</h3>
-https://github.com/sohel-tech4/mobile-gallery
+- https://github.com/sohel-tech4/mobile-gallery
 
-<h3>How to use this backend:</h3>
+<h3>Here I will describe that how can we use this backend:</h3>
 
 ### **1. Create a New Product**
 
