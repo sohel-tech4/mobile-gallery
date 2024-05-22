@@ -127,12 +127,29 @@ const CreateOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const OrderData = req.body;
         const zodValidationOrder = order_validation_z_1.default.parse(OrderData);
+        const OrderedProduct = yield mobile_service_1.MobileServices.getSingleMobile(OrderData === null || OrderData === void 0 ? void 0 : OrderData._id);
         const result = yield mobile_service_1.MobileServices.CreateOrder(zodValidationOrder);
-        res.json({
-            success: true,
-            message: "Order created successfully!",
-            data: result,
-        });
+        const { productId, quantity } = result;
+        const previousQuantity = OrderedProduct === null || OrderedProduct === void 0 ? void 0 : OrderedProduct.inventory.quantity;
+        if (productId != OrderedProduct._id) {
+            res.json({
+                success: false,
+                message: "Order not found",
+            });
+        }
+        else if (quantity <= previousQuantity) {
+            res.json({
+                success: true,
+                message: "Order created successfully!",
+                data: result,
+            });
+        }
+        else {
+            res.json({
+                success: true,
+                message: "Insufficient quantity available in inventory",
+            });
+        }
     }
     catch (error) {
         res.json({

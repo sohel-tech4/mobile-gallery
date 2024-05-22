@@ -10,7 +10,7 @@ const CreateMobile = async (mobile: TMobile) => {
 
 const getAllMobile = async (searchTerm?: string) => {
   try {
-    let query: any = {};
+    const query: any = {};
     if (searchTerm) {
       const searchRegex = { $regex: searchTerm, $options: "i" };
       query.$or = [

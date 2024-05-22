@@ -18,7 +18,7 @@ const CreateMobile = (mobile) => __awaiter(void 0, void 0, void 0, function* () 
 });
 const getAllMobile = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let query = {};
+        const query = {};
         if (searchTerm) {
             const searchRegex = { $regex: searchTerm, $options: "i" };
             query.$or = [

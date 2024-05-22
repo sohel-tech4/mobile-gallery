@@ -115,12 +115,29 @@ const CreateOrder = async (req: Request, res: Response) => {
   try {
     const OrderData = req.body;
     const zodValidationOrder = orderZodSchema.parse(OrderData);
+    const OrderedProduct: any = await MobileServices.getSingleMobile(
+      OrderData?._id
+    );
     const result = await MobileServices.CreateOrder(zodValidationOrder);
-    res.json({
-      success: true,
-      message: "Order created successfully!",
-      data: result,
-    });
+    const { productId, quantity } = result;
+    const previousQuantity = OrderedProduct?.inventory.quantity;
+    if (productId != OrderedProduct._id) {
+      res.json({
+        success: false,
+        message: "Order not found",
+      });
+    } else if (quantity <= previousQuantity) {
+      res.json({
+        success: true,
+        message: "Order created successfully!",
+        data: result,
+      });
+    } else {
+      res.json({
+        success: true,
+        message: "Insufficient quantity available in inventory",
+      });
+    }
   } catch (error) {
     res.json({
       success: false,
