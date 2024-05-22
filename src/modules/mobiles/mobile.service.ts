@@ -50,7 +50,7 @@ const getAllOrders = async (email?: string) => {
   try {
     let query: any = {};
     if (email) {
-      query = { email: email };
+      query = { email };
     }
     const allOrders = await Orders.find(query);
     return allOrders;
