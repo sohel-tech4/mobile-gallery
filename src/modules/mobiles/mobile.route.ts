@@ -3,8 +3,8 @@ import { mobileController } from "./mobile.controller";
 
 const router = express.Router();
 
-router.post("/", mobileController.CreateMobile);
-router.get("/", mobileController.getAllMobile);
+router.post("/api/products", mobileController.CreateMobile);
+router.get("/api/products", mobileController.getAllMobile);
 router.get("/api/products/:productId", mobileController.getSingleMobile);
 router.put("/api/products/:productId", mobileController.updateMobileData);
 router.delete("/api/products/:productId", mobileController.deleteMobile);

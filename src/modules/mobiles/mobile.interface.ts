@@ -14,6 +14,6 @@ export type TMobile = {
   price: number;
   category: string;
   tags: string[];
-  variants: [TVarients];
+  variants: TVarients[];
   inventory: Tinventory;
 };

@@ -1,24 +1,23 @@
 import { Request, Response } from "express";
 import { MobileServices } from "./mobile.service";
 import zodMobileSchema from "./mobile.validation.z";
-import orderZodSchema from "./order.validation.z";
-import { MobileRouter } from "./mobile.route";
+import orderZodSchema from "../orders/order.validation.z";
 
 const CreateMobile = async (req: Request, res: Response) => {
   try {
-  const mobileData = req.body;
-  const mobileZodValidation = zodMobileSchema.parse(mobileData)
-  const result = await MobileServices.CreateMobile(mobileZodValidation);
-  res.json({
-    success: true,
-    message: "Product created successfully!",
-    data: result,
-  });
+    const mobileData = req.body;
+    const mobileZodValidation = zodMobileSchema.parse(mobileData);
+    const result = await MobileServices.CreateMobile(mobileZodValidation);
+    res.json({
+      success: true,
+      message: "Product created successfully!",
+      data: result,
+    });
   } catch (error) {
     res.json({
       success: false,
       message: "Product not created successfully!",
-      error
+      error,
     });
   }
 };
@@ -114,19 +113,19 @@ const deleteMobile = async (req: Request, res: Response) => {
 
 const CreateOrder = async (req: Request, res: Response) => {
   try {
-  const OrderData = req.body;
-  const zodValidationOrder = orderZodSchema.parse(OrderData)
-  const result = await MobileServices.CreateOrder(zodValidationOrder);
-  res.json({
-    success: true,
-    message: "Order created successfully!",
-    data: result,
-  });
+    const OrderData = req.body;
+    const zodValidationOrder = orderZodSchema.parse(OrderData);
+    const result = await MobileServices.CreateOrder(zodValidationOrder);
+    res.json({
+      success: true,
+      message: "Order created successfully!",
+      data: result,
+    });
   } catch (error) {
     res.json({
       success: false,
       message: "Order not created successfully!",
-      error
+      error,
     });
   }
 };
@@ -161,8 +160,6 @@ const getAllOrders = async (req: Request, res: Response) => {
     });
   }
 };
-
-
 
 export const mobileController = {
   CreateMobile,

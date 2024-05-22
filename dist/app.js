@@ -8,12 +8,17 @@ const mobile_route_1 = require("./modules/mobiles/mobile.route");
 const app = (0, express_1.default)();
 // parser
 app.use(express_1.default.json());
-app.use("/api/products", mobile_route_1.MobileRouter);
+app.get("/", (req, res) => {
+    res.send("Hello Mobile Gallery!");
+});
 app.use("/", mobile_route_1.MobileRouter);
 app.use("/api/products/:productId", mobile_route_1.MobileRouter);
 app.use("/api/products/:productId", mobile_route_1.MobileRouter);
 app.use("/api/orders", mobile_route_1.MobileRouter);
-app.get("/", (req, res) => {
-    res.send("Hello Mobile!");
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "Router Not Found",
+    });
 });
 exports.default = app;

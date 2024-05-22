@@ -40,7 +40,7 @@ const mobileSchema = new mongoose_1.Schema({
         required: true,
     },
     tags: {
-        type: [String],
+        type: ["smartphone", "Apple", "iOS"],
         required: true,
     },
     variants: {

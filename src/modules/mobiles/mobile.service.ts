@@ -1,7 +1,7 @@
+import { TOrder } from "../orders/order.interface";
+import { Orders } from "../orders/order.model";
 import { TMobile } from "./mobile.interface";
 import { Mobile } from "./mobile.model";
-import { TOrder } from "./order.interface";
-import { Orders } from "./order.model";
 
 const CreateMobile = async (mobile: TMobile) => {
   const result = await Mobile.create(mobile);

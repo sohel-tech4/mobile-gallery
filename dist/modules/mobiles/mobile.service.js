@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MobileServices = void 0;
+const order_model_1 = require("../orders/order.model");
 const mobile_model_1 = require("./mobile.model");
-const order_model_1 = require("./order.model");
 const CreateMobile = (mobile) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield mobile_model_1.Mobile.create(mobile);
     return result;
