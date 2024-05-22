@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { MobileServices } from "./mobile.service";
 import zodMobileSchema from "./mobile.validation.z";
 import orderZodSchema from "./order.validation.z";
+import { MobileRouter } from "./mobile.route";
 
 const CreateMobile = async (req: Request, res: Response) => {
   try {
@@ -160,6 +161,8 @@ const getAllOrders = async (req: Request, res: Response) => {
     });
   }
 };
+
+
 
 export const mobileController = {
   CreateMobile,
