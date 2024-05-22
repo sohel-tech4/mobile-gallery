@@ -12,6 +12,13 @@ app.use("/api/products/:productId", MobileRouter);
 
 app.use("/api/orders", MobileRouter);
 
+app.use((req: Request, res: Response) => {
+  res.status(404).json({
+    success: false,
+    message: "Router Not Found",
+  });
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello Mobile!");
 });
