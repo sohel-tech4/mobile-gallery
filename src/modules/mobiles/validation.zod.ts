@@ -1,27 +1,23 @@
-import z from "zod";
+import { z } from "zod";
 
-const variantsSchema = z.object({
-  type: z.string().min(1, "Type must not be empty"),
-  value: z.string().min(1, "Value must not be empty"),
+const variantsZodSchema = z.object({
+  type: z.string().nonempty("Type is required and cannot be empty"),
+  value: z.string().nonempty("Value is required and cannot be empty"),
 });
 
-const inventorySchema = z.object({
-  quantity: z.number().min(0, "Quantity must be a non-negative number"),
-  location: z.string().min(1, "Location must not be empty"),
+const inventoryZodSchema = z.object({
+  quantity: z.number().int().nonnegative("Quantity must be a non-negative integer").describe("The quantity is required"),
+  inStock: z.boolean().describe("The inStock status is required"),
 });
 
 const zodMobileSchema = z.object({
-  name: z.string().min(1, "Name must not be empty"),
-  description: z.string().min(1, "Description must not be empty"),
-  price: z.number().positive("Price must be a positive number"),
-  category: z.string().min(1, "Category must not be empty"),
-  tags: z
-    .array(z.string().min(1, "Tag must not be empty"))
-    .nonempty("Tags array must have at least one tag"),
-  variants: z
-    .array(variantsSchema)
-    .nonempty("Variants array must have at least one variant"),
-  inventory: inventorySchema,
+  name: z.string().nonempty("Name is required and cannot be empty"),
+  description: z.string().nonempty("Description is required and cannot be empty"),
+  price: z.number().nonnegative("Price must be a non-negative number").describe("The price is required"),
+  category: z.string().nonempty("Category is required and cannot be empty"),
+  tags: z.array(z.string().nonempty("Tag cannot be empty")).nonempty("Tags are required and cannot be empty"),
+  variants: z.array(variantsZodSchema).nonempty("At least one variant is required"),
+  inventory: inventoryZodSchema,
 });
 
 export default zodMobileSchema;

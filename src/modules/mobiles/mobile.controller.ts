@@ -1,14 +1,24 @@
 import { Request, Response } from "express";
 import { MobileServices } from "./mobile.service";
+import zodMobileSchema from "./validation.zod";
 
 const CreateMobile = async (req: Request, res: Response) => {
+  try {
   const mobileData = req.body;
-  const result = await MobileServices.CreateMobile(mobileData);
+  const mobileZodValidation = zodMobileSchema.parse(mobileData)
+  const result = await MobileServices.CreateMobile(mobileZodValidation);
   res.json({
     success: true,
     message: "Product created successfully!",
     data: result,
   });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "Product not created successfully!",
+      error
+    });
+  }
 };
 
 const getAllMobile = async (req: Request, res: Response) => {
